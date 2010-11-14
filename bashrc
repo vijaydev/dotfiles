@@ -91,7 +91,6 @@ alias rfts="rake facebooker:tunnel:start"
 alias rss='ruby script/server'
 alias rsc='ruby script/console'
 alias open='gnome-open'
-alias mm='cd /home/vijay/projects/manu/markingly'
 
 parse_git_dirty() {
   [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo " *"
