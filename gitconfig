@@ -29,3 +29,6 @@
   co = checkout
   w = whatchanged
   ci = commit
+
+[help]
+  autocorrect = 1
