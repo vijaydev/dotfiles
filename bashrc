@@ -115,10 +115,8 @@ alias rfts="rake facebooker:tunnel:start"
 alias rss='ruby script/server'
 alias rsc='ruby script/console'
 alias open='gnome-open'
-alias mm='cd /home/vijay/projects/manu/markingly'
-alias tv='cd /home/vijay/projects/twitvance'
 alias ttr='touch tmp/restart.txt'
-
+alias 'ps?'='ps aux | grep'
 export EDITOR=vim
 source $HOME/.git-completion.sh
 
