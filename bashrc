@@ -103,6 +103,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 export PATH=$PATH:/opt/ruby-enterprise-1.8.7-2010.02/bin
+export GEMPATH=$GEMPATH:/opt/ruby-enterprise-1.8.7-2010.02/bin
 
 alias gph="git push"
 alias gpl="git pull"
@@ -117,6 +118,8 @@ alias rsc='ruby script/console'
 alias open='gnome-open'
 alias ttr='touch tmp/restart.txt'
 alias 'ps?'='ps aux | grep'
+alias 'makemp3'='mplayer -ao pcm -vo null -vc dummy -dumpaudio -dumpfile'
+
 export EDITOR=vim
 source $HOME/.git-completion.sh
 

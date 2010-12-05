@@ -1,4 +1,5 @@
 set nocompatible
+call pathogen#runtime_append_all_bundles()
 syntax on
 set number
 set autoindent
