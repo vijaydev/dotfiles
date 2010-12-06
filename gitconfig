@@ -1,12 +1,7 @@
-[user]
-  name = vijay
-  email = vijaydev.cse@gmail.com
-
 [color]
   diff = auto
   status = auto
   branch = auto
-  interactive = auto
 
 [color "branch"]
   current = yellow reverse
@@ -16,19 +11,28 @@
 [color "diff"]
   meta = yellow bold
   frag = magenta bold
-  old = red bold
-  new = green bold
+  old = red
+  new = green
 
 [color "status"]
   added = yellow
   changed = green
   untracked = cyan
 
+[user]
+	name = Vijay
+	email = vijay@heymath.com
+
 [alias]
-  st = status
+	st = status
+	ci = commit
   co = checkout
   w = whatchanged
-  ci = commit
+  d = diff
+  log = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+
+[apply]
+  whitespace = fix
 
 [help]
   autocorrect = 1
