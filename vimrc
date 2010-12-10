@@ -7,6 +7,8 @@ set smartindent
 set copyindent
 set smarttab
 set ruler
+set hlsearch
+map <F4> :set nohls!<CR>:set nohls?<CR>
 set incsearch
 set ignorecase "case insensitive searching
 set smartcase " but sensitive if Caps are used
