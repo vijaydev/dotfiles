@@ -1,36 +1,40 @@
 [user]
-name = Vijay Dev
-email = vijaydev.cse@gmail.com
+	name = Vijay Dev
+	email = vijaydev.cse@gmail.com
 
 [color]
-diff = auto
-status = auto
-branch = auto
-interactive = auto
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
 
 [color "branch"]
-current = yellow reverse
-local = yellow
-remote = green
+	current = yellow reverse
+	local = yellow
+	remote = green
 
 [color "diff"]
-meta = yellow bold
-frag = magenta bold
-old = red bold
-new = green bold
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
 
 [color "status"]
-added = yellow
-changed = green
-untracked = cyan
+	added = yellow
+	changed = green
+	untracked = cyan
 
 [alias]
-st = status
-co = checkout
-w = whatchanged
-ci = commit
-d = diff
-log = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	st = status
+	co = checkout
+	w = whatchanged
+	ci = commit
+	d = diff
+	ds = diff --stat
+	au = add -u
+	whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+	changes = log --oneline --no-merges
+	log = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 
 [apply]
   whitespace = fix
