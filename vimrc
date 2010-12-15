@@ -38,7 +38,6 @@ set tabstop=2
 set backspace=2
 cabbr D NERDTreeToggle
 let NERDTreeIgnore=['^\.class$', '^\.old$']
-cabbr E TlistToggle
 set wildignore=*.swp,*.class,*.bak
 set pastetoggle=<F2>
 set gdefault "search and replace is global by default. use /g to toggle behaviour
