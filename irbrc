@@ -1,26 +1,9 @@
-require "rubygems"
-require "ap"
+require 'rubygems'
+require 'wirble'
+Wirble.init
+Wirble.colorize
 
-IRB::Irb.class_eval do
-  def output_value
-    ap @context.last_value, 
-            :multiline => false,
-            :plain  => false,
-            :indent => 2,
-            :color => {
-                :array      => :white,
-                :bignum     => :blue,
-                :class      => :yellow,
-                :date       => :greenish,
-                :falseclass => :red,
-                :fixnum     => :blue,
-                :float      => :blue,
-                :hash       => :gray,
-                :nilclass   => :red,
-                :string     => :yellowish,
-                :symbol     => :cyanish,
-                :time       => :greenish,
-                :trueclass  => :green
-            }
-  end 
+require 'logger'
+if ENV.include?('RAILS_ENV') && !Object.const_defined?('RAILS_DEFAULT_LOGGER')
+  Object.const_set('RAILS_DEFAULT_LOGGER', Logger.new(STDOUT))
 end
