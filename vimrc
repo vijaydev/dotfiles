@@ -52,3 +52,5 @@ noremap <space> <C-f>
 :command Wq wq
 :command W w
 :command Q q
+
+let NERDTreeShowLineNumbers=1
