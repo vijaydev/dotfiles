@@ -119,6 +119,7 @@ alias open='gnome-open'
 alias ttr='touch tmp/restart.txt'
 alias 'ps?'='ps aux | grep'
 alias 'makemp3'='mplayer -ao pcm -vo null -vc dummy -dumpaudio -dumpfile'
+alias sudo='sudo env PATH=$PATH'
 
 export EDITOR=vim
 source $HOME/.git-completion.sh
