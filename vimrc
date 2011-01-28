@@ -52,5 +52,8 @@ noremap <space> <C-f>
 :command Wq wq
 :command W w
 :command Q q
-
+" autocmd BufWritePre *.rb :%s/\s\+$//
 let NERDTreeShowLineNumbers=1
+
+autocmd InsertEnter * highlight LineNr ctermbg=red guibg=red
+autocmd InsertLeave * highlight LineNr ctermbg=black guibg=black
