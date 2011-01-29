@@ -1,14 +1,14 @@
-set nocompatible
 call pathogen#runtime_append_all_bundles()
-syntax on
-set number
+call pathogen#helptags()
+
+set nocompatible
 set autoindent
 set smartindent
 set copyindent
 set smarttab
+set number
 set ruler
 set hlsearch
-map <F4> :set nohls!<CR>:set nohls?<CR>
 set incsearch
 set ignorecase "case insensitive searching
 set smartcase " but sensitive if Caps are used
@@ -16,44 +16,51 @@ set showmatch
 set winheight=999 " split window heights
 set wildmenu " auto complete commands
 set wildmode=list:longest,full
-set autochdir " change dir automatically 
+set wildignore=*.swp,*.class,*.bak
+"set autochdir " change dir automatically
 set showcmd
 set ttyfast
 set nostartofline
 set background=dark
-filetype on 
-filetype indent on
-filetype plugin on
-set autoread " watch for file changes
+set autoread
 set laststatus=2
 set background=dark
-
-"use 2 spaces when using autoindent/cindent
-set shiftwidth=2
-"use the same value as shiftwidth
-set softtabstop=2
-"use 2 char positions for a TAB
-set tabstop=2
-"allow backspacing over identatiom, end-of-line, and start-of-line
-set backspace=2
-cabbr D NERDTreeToggle
-let NERDTreeIgnore=['^\.class$', '^\.old$']
-set wildignore=*.swp,*.class,*.bak
 set pastetoggle=<F2>
 set gdefault "search and replace is global by default. use /g to toggle behaviour
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+set backspace=indent,eol,start
+set history=100
+set hidden
+" TODO check how to add %{fugitive#statusline()} to statusline
 
-" space scroll in normal mode
+let mapleader=","
+
+syntax on
+filetype on
+filetype indent on
+filetype plugin on
+
+let NERDTreeIgnore=['^\.class$', '^\.old$']
+let NERDTreeShowLineNumbers=1
+
+map <F4> :set nohls!<CR>:set nohls?<CR>
+map <F3> :set nonu!<CR>:set nonu?<CR>
+
 noremap <S-tab> <C-b>
 noremap <tab> <C-f>
 noremap <space> <C-f>
+
+nmap <C-c> :CommandT<CR>
+nmap <C-d> :NERDTreeToggle<CR>
 
 " typos mapped to the right commands
 :command WQ wq
 :command Wq wq
 :command W w
 :command Q q
-" autocmd BufWritePre *.rb :%s/\s\+$//
-let NERDTreeShowLineNumbers=1
 
+"autocmd BufWritePre *.rb :%s/\s\+$//
 autocmd InsertEnter * highlight LineNr ctermbg=red guibg=red
 autocmd InsertLeave * highlight LineNr ctermbg=black guibg=black
