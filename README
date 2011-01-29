@@ -7,4 +7,4 @@ git clone git://github.com/tpope/vim-vividchalk.git
 git clone git://github.com/tpope/vim-endwise.git
 git clone git://github.com/scrooloose/nerdtree.git
 git clone git://github.com/tsaleh/vim-supertab.git
-
+git clone git://github.com/wincent/Command-T.git
