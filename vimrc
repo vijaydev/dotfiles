@@ -64,3 +64,7 @@ nmap <C-d> :NERDTreeToggle<CR>
 "autocmd BufWritePre *.rb :%s/\s\+$//
 autocmd InsertEnter * highlight LineNr ctermbg=red guibg=red
 autocmd InsertLeave * highlight LineNr ctermbg=black guibg=black
+
+let g:gist_detect_filetype = 1 
+let g:gist_open_browser_after_post = 1 
+let g:gist_browser_command = 'firefox %URL%'
