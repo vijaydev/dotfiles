@@ -26,7 +26,7 @@ set autoread
 set laststatus=2
 set background=dark
 set pastetoggle=<F2>
-set gdefault "search and replace is global by default. use /g to toggle behaviour
+set gdefault "srch & replace is global by default. Use /g to toggle behaviour
 set shiftwidth=2
 set softtabstop=2
 set tabstop=2
@@ -60,6 +60,7 @@ nmap <C-d> :NERDTreeToggle<CR>
 :command Wq wq
 :command W w
 :command Q q
+:command Qa qa
 
 "autocmd BufWritePre *.rb :%s/\s\+$//
 autocmd InsertEnter * highlight LineNr ctermbg=red guibg=red
