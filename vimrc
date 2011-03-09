@@ -54,8 +54,9 @@ noremap <space> <C-f>
 
 nmap <C-c> :CommandT<CR>
 nmap <C-d> :NERDTreeToggle<CR>
+nmap <C-x> :TlistToggle<CR>
+map <C-z> <Esc>:w<CR>
 
-" typos mapped to the right commands
 :command WQ wq
 :command Wq wq
 :command W w
