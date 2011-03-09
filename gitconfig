@@ -29,12 +29,13 @@
 	co = checkout
 	w = whatchanged
 	ci = commit
-	d = diff
+	b = branch
+	d = diff --cached
 	ds = diff --stat
 	au = add -u
 	whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
 	changes = log --oneline --no-merges
-	log = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	logs = log --stat
 
 [apply]
   whitespace = fix
