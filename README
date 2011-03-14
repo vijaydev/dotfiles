@@ -10,3 +10,4 @@ git clone git://github.com/tsaleh/vim-supertab.git
 git clone git://github.com/wincent/Command-T.git
 git clone git://github.com/tpope/vim-fugitive.git
 git clone git://github.com/mattn/gist-vim.git
+git clone git://github.com/scrooloose/nerdcommenter.git
