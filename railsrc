@@ -1,0 +1,44 @@
+#http://rbjl.net/49-railsrc-rails-console-snippets
+
+ActiveRecord::Base.logger     = Logger.new STDOUT
+ActiveRecord::Base.clear_reloadable_connections!
+
+ActionController::Base.logger = Logger.new STDOUT
+
+include Rails.application.routes.url_helpers
+default_url_options[:host] = Rails.application.class.parent_name.downcase
+
+# console custom prompt
+app_name = Rails.application.class.parent_name.downcase
+app_env  = Rails.env[0...3]
+IRB.conf[:PROMPT] ||= {}
+IRB.conf[:PROMPT][:RAILS] = {
+  :PROMPT_I => "#{ app_name }(#{ app_env })> ",
+  :PROMPT_N => "#{ app_name }(#{ app_env })| ",
+  :PROMPT_C => "#{ app_name }(#{ app_env })| ",
+  :PROMPT_S => "#{ app_name }(#{ app_env })%l ",
+  :RETURN => "=> %s\n",
+  :AUTO_INDENT => true,
+}
+IRB.conf[:PROMPT_MODE] = :RAILS
+
+# SQL helper
+def sql(query)
+  ActiveRecord::Base.connection.select_all(query)
+end
+
+# Model#find helper methods
+# Instead of User.find.. you can do user... Without arguments it only returns the model class.
+Dir.glob( File.join(Dir.pwd, *%w<app models ** *.rb>) ).map { |file_name|
+  table_name = File.basename(file_name).split('.')[0..-2].join
+  Object.instance_eval do
+    define_method(table_name) do |*args|
+      table_class = table_name.camelize.constantize
+      if args.empty?
+        table_class
+      else
+        table_class.send(:find, *args)
+      end
+    end
+  end
+}
