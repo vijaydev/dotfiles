@@ -33,6 +33,7 @@ set tabstop=2
 set backspace=indent,eol,start
 set history=100
 set hidden
+set tabpagemax=20
 " TODO check how to add %{fugitive#statusline()} to statusline
 
 let mapleader=","
@@ -43,7 +44,7 @@ filetype indent on
 filetype plugin on
 
 let NERDTreeIgnore=['^\.class$', '^\.old$']
-let NERDTreeShowLineNumbers=1
+"let NERDTreeShowLineNumbers=1
 
 map <F4> :set nohls!<CR>:set nohls?<CR>
 map <F3> :set nonu!<CR>:set nonu?<CR>
@@ -67,6 +68,22 @@ map <C-z> <Esc>:w<CR>
 autocmd InsertEnter * highlight LineNr ctermbg=red guibg=red
 autocmd InsertLeave * highlight LineNr ctermbg=black guibg=black
 
-let g:gist_detect_filetype = 1 
-let g:gist_open_browser_after_post = 1 
-let g:gist_browser_command = 'firefox %URL%'
+let Tlist_Ctags_Cmd = "/usr/bin/ctags"
+
+let g:gist_detect_filetype = 1
+let g:gist_open_browser_after_post = 1
+let g:gist_browser_command = 'google-chrome %URL%'
+
+" Reference: http://vim.wikia.com/wiki/Switching_case_of_characters. Use tilde
+" to toggle between title, upper and lower case
+function! TwiddleCase(str)
+  if a:str ==# toupper(a:str)
+    let result = tolower(a:str)
+  elseif a:str ==# tolower(a:str)
+    let result = substitute(a:str,'\(\<\w\+\>\)', '\u\1', 'g')
+  else
+    let result = toupper(a:str)
+  endif
+  return result
+endfunction
+vnoremap ~ ygv"=TwiddleCase(@")<CR>Pgv
