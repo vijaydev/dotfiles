@@ -22,9 +22,13 @@ IRB.conf[:PROMPT][:RAILS] = {
 }
 IRB.conf[:PROMPT_MODE] = :RAILS
 
-# SQL helper
+# SQL helpers
 def sql(query)
   ActiveRecord::Base.connection.select_all(query)
+end
+
+def sql_ex(query)
+  ActiveRecord::Base.connection.execute(query)
 end
 
 # Model#find helper methods
