@@ -1,6 +1,6 @@
 #http://rbjl.net/49-railsrc-rails-console-snippets
 
-ActiveRecord::Base.logger     = Logger.new STDOUT
+ActiveRecord::Base.logger = Logger.new STDOUT
 ActiveRecord::Base.clear_reloadable_connections!
 
 ActionController::Base.logger = Logger.new STDOUT
