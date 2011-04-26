@@ -14,6 +14,17 @@ set ignorecase "case insensitive searching
 set smartcase " but sensitive if Caps are used
 set showmatch
 set winheight=999 " split window heights
+
+set previewheight=50
+" hack from here http://stackoverflow.com/questions/3712725/can-i-change-vim-completion-preview-window-height
+au BufEnter ?* call PreviewHeightWorkAround()
+func PreviewHeightWorkAround()
+	if &previewwindow
+		exec 'setlocal winheight='.&previewheight
+	endif
+endfunc
+
+set previewheight=50
 set wildmenu " auto complete commands
 set wildmode=list:longest,full
 set wildignore=*.swp,*.class,*.bak
@@ -28,7 +39,7 @@ set background=dark
 set pastetoggle=<F2>
 set gdefault "srch & replace is global by default. Use /g to toggle behaviour
 set shiftwidth=2
-set softtabstop=2
+set softtabstop=2http://stackoverflow.com/questions/3712725/can-i-change-vim-completion-preview-window-height
 set tabstop=2
 set backspace=indent,eol,start
 set history=100
@@ -55,8 +66,13 @@ noremap <space> <C-f>
 
 nmap <C-c> :CommandT<CR>
 nmap <C-d> :NERDTreeToggle<CR>
-nmap <C-x> :TlistToggle<CR>
+" nmap <C-x> :TlistToggle<CR>
 map <C-z> <Esc>:w<CR>
+
+nnoremap <leader>p "+p
+nnoremap <leader>y "+y
+
+nnoremap <C-j> ddpkJ
 
 :command WQ wq
 :command Wq wq
