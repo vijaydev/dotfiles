@@ -39,7 +39,7 @@ set background=dark
 set pastetoggle=<F2>
 set gdefault "srch & replace is global by default. Use /g to toggle behaviour
 set shiftwidth=2
-set softtabstop=2http://stackoverflow.com/questions/3712725/can-i-change-vim-completion-preview-window-height
+set softtabstop=2
 set tabstop=2
 set backspace=indent,eol,start
 set history=100
