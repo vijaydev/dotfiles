@@ -107,14 +107,14 @@ export GEMPATH=$GEMPATH:/opt/ruby-enterprise-1.8.7-2010.02/bin
 
 alias gph="git push"
 alias gpl="git pull"
+alias gpum="git pull upstream master"
 alias capd="cap deploy"
 alias gdf="git diff"
+alias gdfc="git diff --color-words"
 alias gss="git status"
 alias gpom="git push origin master"
 alias rdm="rake db:migrate"
 alias rfts="rake facebooker:tunnel:start"
-alias rss='ruby script/server'
-alias rsc='ruby script/console'
 alias open='gnome-open'
 alias ttr='touch tmp/restart.txt'
 alias 'ps?'='ps aux | grep'
@@ -123,6 +123,21 @@ alias sudo='sudo env PATH=$PATH'
 
 export EDITOR=vim
 source $HOME/.git-completion.sh
+
+function rss {
+  if [ -e "./script/server" ]; then
+    ./script/server $@
+  else
+    rails server $@
+  fi
+}
+function rsc {
+  if [ -e "./script/console" ]; then
+    ./script/console $@
+  else
+    rails console $@
+  fi
+}
 
 parse_git_branch() {
 	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'

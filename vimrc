@@ -6,6 +6,7 @@ set autoindent
 set smartindent
 set copyindent
 set smarttab
+set expandtab
 set number
 set ruler
 set hlsearch
@@ -23,8 +24,6 @@ func PreviewHeightWorkAround()
 		exec 'setlocal winheight='.&previewheight
 	endif
 endfunc
-
-set previewheight=50
 set wildmenu " auto complete commands
 set wildmode=list:longest,full
 set wildignore=*.swp,*.class,*.bak
@@ -44,7 +43,7 @@ set tabstop=2
 set backspace=indent,eol,start
 set history=100
 set hidden
-set tabpagemax=20
+set tabpagemax=30
 " TODO check how to add %{fugitive#statusline()} to statusline
 
 let mapleader=","
@@ -73,6 +72,7 @@ nnoremap <leader>p "+p
 nnoremap <leader>y "+y
 
 nnoremap <C-j> ddpkJ
+nnoremap <CR> o<ESC>
 
 :command WQ wq
 :command Wq wq
@@ -103,3 +103,5 @@ function! TwiddleCase(str)
   return result
 endfunction
 vnoremap ~ ygv"=TwiddleCase(@")<CR>Pgv
+
+ " autocmd BufRead *.* normal G$
