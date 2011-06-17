@@ -2,11 +2,7 @@
 
 ActiveRecord::Base.logger = Logger.new STDOUT
 ActiveRecord::Base.clear_reloadable_connections!
-
 ActionController::Base.logger = Logger.new STDOUT
-
-include Rails.application.routes.url_helpers
-default_url_options[:host] = Rails.application.class.parent_name.downcase
 
 # console custom prompt
 app_name = Rails.application.class.parent_name.downcase
@@ -30,19 +26,3 @@ end
 def sql_ex(query)
   ActiveRecord::Base.connection.execute(query)
 end
-
-# Model#find helper methods
-# Instead of User.find.. you can do user... Without arguments it only returns the model class.
-Dir.glob( File.join(Dir.pwd, *%w<app models ** *.rb>) ).map { |file_name|
-  table_name = File.basename(file_name).split('.')[0..-2].join
-  Object.instance_eval do
-    define_method(table_name) do |*args|
-      table_class = table_name.camelize.constantize
-      if args.empty?
-        table_class
-      else
-        table_class.send(:find, *args)
-      end
-    end
-  end
-}

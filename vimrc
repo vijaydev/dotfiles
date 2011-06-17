@@ -79,6 +79,7 @@ nnoremap <CR> o<ESC>
 :command W w
 :command Q q
 :command Qa qa
+:command Wqa wqa
 
 "autocmd BufWritePre *.rb :%s/\s\+$//
 autocmd InsertEnter * highlight LineNr ctermbg=red guibg=red
