@@ -107,16 +107,12 @@ export GEMPATH=$GEMPATH:/opt/ruby-enterprise-1.8.7-2010.02/bin
 
 alias gph="git push"
 alias gpl="git pull"
-alias gpum="git pull upstream master"
 alias capd="cap deploy"
 alias gdf="git diff"
 alias gdfc="git diff --color-words"
 alias gss="git status"
-alias gpom="git push origin master"
 alias rdm="rake db:migrate"
-alias rfts="rake facebooker:tunnel:start"
 alias open='gnome-open'
-alias ttr='touch tmp/restart.txt'
 alias 'ps?'='ps aux | grep'
 alias 'makemp3'='mplayer -ao pcm -vo null -vc dummy -dumpaudio -dumpfile'
 alias sudo='sudo env PATH=$PATH'
