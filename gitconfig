@@ -1,44 +1,47 @@
 [user]
-	name = Vijay Dev
-	email = vijaydev.cse@gmail.com
-
+  name = Vijay Dev
+  email = vijaydev.cse@gmail.com
 [color]
-	diff = auto
-	status = auto
-	branch = auto
-	interactive = auto
-
+  ui = true
 [color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
-
+  current = yellow reverse
+  local = yellow
+  remote = green
 [color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
-
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
 [color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
-
+  added = yellow
+  changed = green
+  untracked = cyan
 [alias]
-	st = status
-	co = checkout
-	w = whatchanged
-	ci = commit
-	b = branch
-	d = diff --cached
-	ds = diff --stat
-	au = add -u
-	whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short
-	changes = log --oneline --no-merges
-	logs = log --stat
-
+  st = status
+  co = checkout
+  w = whatchanged
+  ci = commit
+  ca = commit --amend
+  chp = cherry-pick
+  b = branch
+  d = diff --cached
+  ds = diff --stat
+  au = add -u
+  s = show -s --pretty='tformat:%h (%s, %ad)' --date=short
+  l = log --oneline --no-merges
+  logs = log --stat
+  logp = log -p
+  unadd = reset HEAD
+  dd = checkout @{-1}
 [apply]
   whitespace = fix
-
 [help]
   autocorrect = 1
+[diff]
+  mnemonicprefix = true
+[push]
+  default = tracking
+[advice]
+  statusHints = false
+[core]
+  excludesfile = /home/vijay/.gitignore
