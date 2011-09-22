@@ -15,7 +15,6 @@ set ignorecase "case insensitive searching
 set smartcase " but sensitive if Caps are used
 set showmatch
 set winheight=999 " split window heights
-
 set previewheight=50
 " hack from here http://stackoverflow.com/questions/3712725/can-i-change-vim-completion-preview-window-height
 au BufEnter ?* call PreviewHeightWorkAround()
@@ -44,6 +43,8 @@ set backspace=indent,eol,start
 set history=100
 set hidden
 set tabpagemax=30
+set dir=/home/vijay/.vim/backup
+set backupdir=/home/vijay/.vim/backup
 " TODO check how to add %{fugitive#statusline()} to statusline
 
 let mapleader=","
@@ -65,13 +66,17 @@ noremap <space> <C-f>
 
 nmap <C-c> :CommandT<CR>
 nmap <C-d> :NERDTreeToggle<CR>
-" nmap <C-x> :TlistToggle<CR>
+map <C-b> :TlistToggle<CR>
 map <C-z> <Esc>:w<CR>
+
+cmap w!! w !sudo tee % >/dev/null
 
 nnoremap <leader>p "+p
 nnoremap <leader>y "+y
 
 nnoremap <C-j> ddpkJ
+nnoremap <C-t> bi<tt><ESC>f i</tt><ESC>
+nnoremap <C-p> bi+<ESC>ea+<ESC>
 nnoremap <CR> o<ESC>
 
 :command WQ wq
@@ -85,6 +90,10 @@ nnoremap <CR> o<ESC>
 autocmd InsertEnter * highlight LineNr ctermbg=red guibg=red
 autocmd InsertLeave * highlight LineNr ctermbg=black guibg=black
 
+" persist folds
+" http://princ3.wordpress.com/2007/01/26/automaticaly-save-foldings-in-vim/
+au BufWinLeave * silent! mkview
+au BufWinEnter * silent! loadview
 let Tlist_Ctags_Cmd = "/usr/bin/ctags"
 
 let g:gist_detect_filetype = 1
