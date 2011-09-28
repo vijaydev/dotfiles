@@ -3,7 +3,6 @@ My configuration files..
 The vim plugins installed in .vim dir:
 git clone git://github.com/tpope/vim-pathogen.git
 git clone git://github.com/tpope/vim-rails.git
-git clone git://github.com/tpope/vim-vividchalk.git
 git clone git://github.com/tpope/vim-endwise.git
 git clone git://github.com/scrooloose/nerdtree.git
 git clone git://github.com/tsaleh/vim-supertab.git
@@ -11,4 +10,3 @@ git clone git://github.com/wincent/Command-T.git
 git clone git://github.com/tpope/vim-fugitive.git
 git clone git://github.com/mattn/gist-vim.git
 git clone git://github.com/scrooloose/nerdcommenter.git
-git clone git://github.com/timcharper/textile.vim.git
