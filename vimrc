@@ -71,8 +71,8 @@ map <C-z> <Esc>:w<CR>
 
 cmap w!! w !sudo tee % >/dev/null
 
-nnoremap <leader>p "+p
-nnoremap <leader>y "+y
+nnoremap <leader>p :bp<CR>
+nnoremap <leader>n :bn<CR>
 
 nnoremap <C-j> ddpkJ
 nnoremap <C-t> bi<tt><ESC>f i</tt><ESC>
@@ -87,8 +87,6 @@ nnoremap <CR> o<ESC>
 :command Wqa wqa
 
 "autocmd BufWritePre *.rb :%s/\s\+$//
-autocmd InsertEnter * highlight LineNr ctermbg=red guibg=red
-autocmd InsertLeave * highlight LineNr ctermbg=black guibg=black
 
 " persist folds
 " http://princ3.wordpress.com/2007/01/26/automaticaly-save-foldings-in-vim/
@@ -113,5 +111,3 @@ function! TwiddleCase(str)
   return result
 endfunction
 vnoremap ~ ygv"=TwiddleCase(@")<CR>Pgv
-
- " autocmd BufRead *.* normal G$
