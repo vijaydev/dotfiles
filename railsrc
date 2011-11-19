@@ -26,3 +26,11 @@ end
 def sql_ex(query)
   ActiveRecord::Base.connection.execute(query)
 end
+
+def show_tables
+  sql_ex("show tables").map.flatten
+end
+
+def show_cols(klass)
+  klass.columns.map(&:name).sort
+end

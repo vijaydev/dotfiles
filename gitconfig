@@ -28,20 +28,33 @@
   ds = diff --stat
   au = add -u
   s = show -s --pretty='tformat:%h (%s, %ad)' --date=short
-  l = log --oneline --no-merges
+  l = log --oneline
+  ln = log --oneline --no-merges
   logs = log --stat
   logp = log -p
   unadd = reset HEAD
+  hh = reset --hard ORIG_HEAD
   dd = checkout @{-1}
+  shorten = "!bash -c 'curl -i http://git.io -F url=$1' -"
 [apply]
   whitespace = fix
 [help]
-  autocorrect = 1
+  autocorrect = 0
 [diff]
   mnemonicprefix = true
+  tool = diffmerge
 [push]
   default = tracking
 [advice]
   statusHints = false
 [core]
   excludesfile = /home/vijay/.gitignore
+[rerere]
+  enabled = 1
+[merge]
+  tool = diffmerge
+[mergetool "diffmerge"]
+  cmd = diffmerge --merge\n--result=$MERGED $LOCAL $BASE $REMOTE
+  trustExitCode = true
+[difftool "diffmerge"]
+  cmd = diffmerge $LOCAL $REMOTE

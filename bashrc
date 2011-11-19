@@ -102,7 +102,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-export PATH=$PATH:/opt/ruby-enterprise-1.8.7-2010.02/bin
+export PATH=/home/vijay/projects/github/scripts:/opt/ruby-enterprise-1.8.7-2010.02/bin:$PATH
 export GEMPATH=$GEMPATH:/opt/ruby-enterprise-1.8.7-2010.02/bin
 
 alias gph="git push"
@@ -113,10 +113,35 @@ alias gdfc="git diff --color-words"
 alias gss="git status"
 alias rdm="rake db:migrate"
 alias open='gnome-open'
+alias tv='cd /home/vijay/projects/twitvance'
+alias rg='cd /home/vijay/projects/github/lifo-docrails/railties/guides/source'
+alias rs='cd /home/vijay/projects/github/rails-rails'
+alias rd='cd /home/vijay/projects/github/lifo-docrails'
+alias rgg='rake generate_guides'
 alias 'ps?'='ps aux | grep'
 alias 'makemp3'='mplayer -ao pcm -vo null -vc dummy -dumpaudio -dumpfile'
 alias sudo='sudo env PATH=$PATH'
-
+alias sai='sudo apt-get install'
+alias sc='cd /home/vijay/projects/github/scripts'
+alias rr='rake routes'
+alias rjw='rake jobs:work'
+alias ack='ack-grep'
+alias crd='cap review deploy'
+alias cpd='cap production deploy'
+alias cpdp='cap production deploy:pending'
+alias cpdm='cap production deploy:migrations'
+alias prodn='git co production && git merge master'
+alias live='prodn && gph && crd && cpd'
+alias gsmu='git submodule sync && git submodule update'
+alias gsu='git submodule update'
+alias bi='bundle install'
+alias arec='cd activerecord'
+alias asup='cd activesupport'
+alias ares='cd activeresource'
+alias mdocrails='rs && ruby /home/vijay/projects/github/scripts/merge_docrails.rb'
+alias gprm='git pull rails master'
+alias png='ping google.com'
+alias rubyt='ruby -Ilib -Itest'
 export EDITOR=vim
 source $HOME/.git-completion.sh
 
@@ -140,3 +165,4 @@ parse_git_branch() {
 }
 PS1="${debian_chroot:+($debian_chroot)}[\w\$(parse_git_branch)]$ "
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+[ -f ~/.bundler-exec.sh ] && source ~/.bundler-exec.sh
