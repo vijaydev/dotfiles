@@ -7,7 +7,7 @@
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
-HISTCONTROL=ignoredups:ignorespace
+export HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -120,7 +120,6 @@ alias rd='cd /home/vijay/projects/github/lifo-docrails'
 alias rgg='rake generate_guides'
 alias 'ps?'='ps aux | grep'
 alias 'makemp3'='mplayer -ao pcm -vo null -vc dummy -dumpaudio -dumpfile'
-alias sudo='sudo env PATH=$PATH'
 alias sai='sudo apt-get install'
 alias sc='cd /home/vijay/projects/github/scripts'
 alias rr='rake routes'
@@ -135,13 +134,15 @@ alias live='prodn && gph && crd && cpd'
 alias gsmu='git submodule sync && git submodule update'
 alias gsu='git submodule update'
 alias bi='bundle install'
-alias arec='cd activerecord'
-alias asup='cd activesupport'
+alias arec='cd activerecord/lib/active_record'
+alias asup='cd activesupport/lib/active_support'
 alias ares='cd activeresource'
 alias mdocrails='rs && ruby /home/vijay/projects/github/scripts/merge_docrails.rb'
 alias gprm='git pull rails master'
 alias png='ping google.com'
 alias rubyt='ruby -Ilib -Itest'
+alias re='time rake environment'
+alias gg='git grep'
 export EDITOR=vim
 source $HOME/.git-completion.sh
 
@@ -149,20 +150,51 @@ function rss {
   if [ -e "./script/server" ]; then
     ./script/server $@
   else
-    rails server $@
+    ./script/rails server $@
   fi
 }
 function rsc {
   if [ -e "./script/console" ]; then
     ./script/console $@
   else
-    rails console $@
+    ./script/rails console $@
   fi
 }
 
 parse_git_branch() {
-	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
-PS1="${debian_chroot:+($debian_chroot)}[\w\$(parse_git_branch)]$ "
+
+CYAN="\[\033[01;36m\]"
+GRAY="\[\033[01;37m\]"
+COLOR_NONE="\[\033[0m\]"
+
+function ruby_version {
+  if [[ -f ~/.rvm/bin/rvm-prompt ]]; then
+    local system=$(~/.rvm/bin/rvm-prompt s)
+    local interp=$(~/.rvm/bin/rvm-prompt i)
+    if [[ ! -n $system ]]; then
+      # Don't show interpreter if it's just MRI
+      case $interp in
+        ruby) echo "${CYAN}$(~/.rvm/bin/rvm-prompt v g)${COLOR_NONE}" ;;
+        *)    echo "${CYAN}$(~/.rvm/bin/rvm-prompt i v g)${COLOR_NONE}" ;;
+      esac
+    fi
+  fi
+}
+
+function prompt_func {
+  previous_return_value=$?;
+  prompt="$(ruby_version)${GRAY}[\w\$(parse_git_branch)]${COLOR_NONE}"
+  if test $previous_return_value -eq 0
+  then
+    PS1="${prompt}\$ "
+  else
+    PS1="${prompt}${CYAN}\$${COLOR_NONE} "
+  fi
+}
+
+export PROMPT_COMMAND=prompt_func
+
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
 [ -f ~/.bundler-exec.sh ] && source ~/.bundler-exec.sh
