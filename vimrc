@@ -1,5 +1,5 @@
-call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
+call pathogen#runtime_append_all_bundles()
 
 set nocompatible
 set autoindent
@@ -25,7 +25,7 @@ func PreviewHeightWorkAround()
 endfunc
 set wildmenu " auto complete commands
 set wildmode=list:longest,full
-set wildignore=*.swp,*.class,*.bak
+set wildignore=*.swp,*.class,*.bak,*.git
 "set autochdir " change dir automatically
 set showcmd
 set ttyfast
@@ -75,7 +75,7 @@ nmap <C-c> :CommandT<CR>
 nmap <C-d> :NERDTreeToggle<CR>
 map <C-b> :TlistToggle<CR>
 
-map <C-z> <Esc>:w<CR>
+map <C-x> <Esc>:w<CR>
 
 cmap w!! w !sudo tee % >/dev/null
 
@@ -83,8 +83,6 @@ nnoremap <leader>p :bp<CR>
 nnoremap <leader>n :bn<CR>
 " switch betn last two buffers: https://github.com/krisleech/vimfiles/blob/master/vimrc
 nnoremap <leader><leader> <c-^>
-
-imap <C-l> <Space>=><Space>
 
 nnoremap <C-j> ddpkJ
 nnoremap <C-t> bi<tt><ESC>f i</tt><ESC>
@@ -161,7 +159,7 @@ command B call PasteFromClipboard()
 "fold tag
 nnoremap <leader>ft Vatzf
 
-nnoremap <leader>tn :tabnew<CR>
+nnoremap <leader>nn :tabnew<CR>
 
 " Tab switching like firefox
 map <leader>] gt
@@ -182,16 +180,22 @@ nnoremap <silent> k gk
 vnoremap <silent> j gj
 vnoremap <silent> k gk
 
-"
-set dictionary=/usr/share/dict/words
+"set dictionary=/usr/share/dict/words
 
-set foldmethod=syntax
-augroup ft_ruby
-  au!
-  au Filetype ruby setlocal foldmethod=syntax
-augroup END
+nmap <silent> // :nohlsearch<CR>
+
+"https://github.com/skwp/dotfiles/blob/master/vimrc
+nnoremap <silent> vv <C-w>v
+nnoremap <silent> ss <C-w>s
 
 set cursorline
 set virtualedit+=block
 
-nnoremap <leader><space> :nohls<cr>
+imap <leader>h #{}<Esc>h
+imap <C-H> =><Space>
+imap <silent> <C-K> <%  %><Esc>2hi
+imap <silent> <C-G> <% end %><CR>
+imap <silent> <C-L> <%=  %><Esc>2hi
+
+map <F1> <Esc>
+imap <F1> <Esc>
