@@ -88,6 +88,7 @@ nnoremap <C-j> ddpkJ
 nnoremap <C-t> bi<tt><ESC>f i</tt><ESC>
 nnoremap <C-p> bi+<ESC>ea+<ESC>
 nnoremap <CR> o<ESC>
+nnoremap S i<cr><esc><right>
 
 nnoremap <Leader>s :%s//<left>
 
@@ -196,6 +197,13 @@ imap <C-H> =><Space>
 imap <silent> <C-K> <%  %><Esc>2hi
 imap <silent> <C-G> <% end %><CR>
 imap <silent> <C-L> <%=  %><Esc>2hi
+imap <silent> <leader>cf console.info()<Esc>i
+imap <silent> <leader>ci console.info('')<Esc>hi
+imap <silent> <leader>ct console.time('')<Esc>hi
+imap <silent> <leader>cte console.timeEnd('')<Esc>hi
+
+" find merge conflict markers
+nmap <silent> <leader>cf <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
 map <F1> <Esc>
 imap <F1> <Esc>
