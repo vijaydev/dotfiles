@@ -134,6 +134,11 @@ function! StripWhitespace()
 endfunction
 map <leader>sw :call StripWhitespace()<CR>
 
+function! DupColumn()
+  exec ':%s/^\(.*\)$/\1 \1/'
+endfunction
+map <leader>dc :call DupColumn()<CR>
+
 nmap <leader>m <C-w><C-w>_
 
 " https://bitbucket.org/sjl/dotfiles/src/1b6ffba66e9f/vim/.vimrc
