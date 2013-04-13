@@ -21,7 +21,8 @@
   co = checkout
   w = whatchanged
   ci = commit
-  ca = commit --amend --no-edit
+  ca = commit --amend
+  can = commit --amend --no-edit
   chp = cherry-pick
   b = branch
   d = diff --cached
