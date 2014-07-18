@@ -43,10 +43,11 @@ set backspace=indent,eol,start
 set history=100
 set hidden
 set tabpagemax=60
-set dir=/home/vijay/.vim/backup
 set scrolloff=5
+set dir=/home/vijay/.vim/backup
 set backupdir=/home/vijay/.vim/backup
 
+let &viewdir="/tmp/vimviews"
 "set undofile
 "set undodir=/home/vijay/.vim_undo
 let mapleader=","
@@ -212,3 +213,77 @@ nmap <silent> <leader>cf <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 
 map <F1> <Esc>
 imap <F1> <Esc>
+
+imap <silent> rli Rails.logger.info 
+imap <silent> rlit Rails.logger.info .inspect<Esc>7hi
+
+let g:ragtag_global_maps = 1
+
+" swaroopch
+
+map <F1> <Esc>
+imap <F1> <Esc>
+
+set statusline=
+set statusline+=%-3.3n\                         " buffer number
+set statusline+=%f\                             " filename
+set statusline+=%h%m%r%w                        " status flags
+set statusline+=%{fugitive#statusline()}        " git status
+set statusline+=\[%{strlen(&ft)?&ft:'none'}]    " file type
+set statusline+=%=                              " right align remainder
+set statusline+=%-14(%l,%c%V%)                  " line, character
+set statusline+=%<%P                            " file position
+
+autocmd BufRead,BufNewFile {Gemfile,Rakefile,config.ru} set ft=ruby
+
+syntax enable
+"let g:solarized_termcolors=16
+"colorscheme solarized
+
+"https://twitter.com/#!/slawosz/status/168337740784599041
+inoremap jk <Left><C-[>
+
+"https://github.com/bryankennedy/vimrc/blob/master/vimrc
+
+" Escape special characters in a string for exact matching.
+" This is useful to copying strings from the file to the search tool
+" Based on this - http://peterodding.com/code/vim/profile/autoload/xolox/escape.vim
+function! EscapeString (string)
+  let string=a:string
+  " Escape regex characters
+  let string = escape(string, '^$.*\/~[]')
+  " Escape the line endings
+  let string = substitute(string, '\n', '\\n', 'g')
+  return string
+endfunction
+
+" Get the current visual block for search and replaces
+" This function passed the visual block through a string escape function
+" Based on this - http://stackoverflow.com/questions/676600/vim-replace-selected-text/677918#677918
+function! GetVisual() range
+  " Save the current register and clipboard
+  let reg_save = getreg('"')
+  let regtype_save = getregtype('"')
+  let cb_save = &clipboard
+  set clipboard&
+
+  " Put the current visual selection in the " register
+  normal! ""gvy
+  let selection = getreg('"')
+
+  " Put the saved registers and clipboards back
+  call setreg('"', reg_save, regtype_save)
+  let &clipboard = cb_save
+
+  "Escape any special characters in the selection
+  let escaped_selection = EscapeString(selection)
+
+  return escaped_selection
+endfunction
+
+" Start the find and replace command across the entire file
+vmap <leader>z <Esc>:%s/<c-r>=GetVisual()<cr>/
+
+"http://vim.wikia.com/wiki/Easy_edit_of_files_in_the_same_directory
+cabbr <expr> %% expand('%:p:h')
+

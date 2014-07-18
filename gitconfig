@@ -37,6 +37,9 @@
   hh = reset --hard ORIG_HEAD
   dd = checkout @{-1}
   shorten = "!bash -c 'curl -i http://git.io -F url=$1' -"
+  amd = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend
+  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+  f = "!git ls-files | grep -i"
 [apply]
   whitespace = fix
 [help]
@@ -50,6 +53,7 @@
   statusHints = false
 [core]
   excludesfile = /home/vijay/.gitignore
+  pager = less
 [rerere]
   enabled = 1
 [merge]
