@@ -16,6 +16,7 @@ set smartcase " but sensitive if Caps are used
 set showmatch
 set winheight=999 " split window heights
 set previewheight=50
+au BufReadCmd *.epub call zip#Browse(expand("<amatch>"))
 " hack from here http://stackoverflow.com/questions/3712725/can-i-change-vim-completion-preview-window-height
 au BufEnter ?* call PreviewHeightWorkAround()
 func PreviewHeightWorkAround()
@@ -44,12 +45,9 @@ set history=100
 set hidden
 set tabpagemax=60
 set scrolloff=5
-set dir=/home/vijay/.vim/backup
-set backupdir=/home/vijay/.vim/backup
+set dir=$HOME/.vim-backup
+set backupdir=$HOME/.vim-backup
 
-let &viewdir="/tmp/vimviews"
-"set undofile
-"set undodir=/home/vijay/.vim_undo
 let mapleader=","
 
 syntax on
@@ -58,13 +56,10 @@ filetype indent on
 filetype plugin on
 
 let NERDTreeIgnore=['^\.class$', '^\.old$']
-" Dont show Press ? for help
 let NERDTreeMinimalUI = 1
-" Use nicer arrows in the tree
 let NERDTreeDirArrows = 1
-"let NERDTreeShowLineNumbers=1
 
-"map <F6> :set nohls!<CR>:set nohls?<CR>
+map <F6> :set nohls!<CR>:set nohls?<CR>
 map <F3> :set nonu!<CR>:set nonu?<CR>
 map <F5> :set nolist!<CR>:set nolist?<CR>
 
@@ -74,8 +69,6 @@ noremap <space> <C-f>
 
 nmap <C-c> :CommandT<CR>
 nmap <C-d> :NERDTreeToggle<CR>
-map <C-b> :TlistToggle<CR>
-
 map <C-x> <Esc>:w<CR>
 
 cmap w!! w !sudo tee % >/dev/null
@@ -90,8 +83,7 @@ nnoremap <C-t> bi<tt><ESC>f i</tt><ESC>
 nnoremap <C-p> bi+<ESC>ea+<ESC>
 nnoremap <CR> o<ESC>
 nnoremap S i<cr><esc><right>
-
-nnoremap <Leader>s :%s//<left>
+nnoremap <leader>s :%s//<left>
 
 :command WQ wq
 :command Wq wq
@@ -108,8 +100,6 @@ nnoremap <Leader>s :%s//<left>
 " http://princ3.wordpress.com/2007/01/26/automaticaly-save-foldings-in-vim/
 au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
-
-let Tlist_Ctags_Cmd = "/usr/bin/ctags"
 
 let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
@@ -139,8 +129,6 @@ function! DupColumn()
   exec ':%s/^\(.*\)$/\1 \1/'
 endfunction
 map <leader>dc :call DupColumn()<CR>
-
-nmap <leader>m <C-w><C-w>_
 
 " https://bitbucket.org/sjl/dotfiles/src/1b6ffba66e9f/vim/.vimrc
 nnoremap D d$
@@ -187,19 +175,17 @@ nnoremap <silent> k gk
 vnoremap <silent> j gj
 vnoremap <silent> k gk
 
-"set dictionary=/usr/share/dict/words
-
 nmap <silent> // :nohlsearch<CR>
 
 "https://github.com/skwp/dotfiles/blob/master/vimrc
 nnoremap <silent> vv <C-w>v
 nnoremap <silent> ss <C-w>s
 
-set cursorline
+cabbr <expr> %% expand('%:p:h')
+
 set virtualedit+=block
 
 imap <leader>h #{}<Esc>h
-imap <C-H> =><Space>
 imap <silent> <C-K> <%  %><Esc>2hi
 imap <silent> <C-G> <% end %><CR>
 imap <silent> <C-L> <%=  %><Esc>2hi
@@ -214,76 +200,7 @@ nmap <silent> <leader>cf <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 map <F1> <Esc>
 imap <F1> <Esc>
 
-imap <silent> rli Rails.logger.info 
-imap <silent> rlit Rails.logger.info .inspect<Esc>7hi
-
-let g:ragtag_global_maps = 1
-
-" swaroopch
-
-map <F1> <Esc>
-imap <F1> <Esc>
-
-set statusline=
-set statusline+=%-3.3n\                         " buffer number
-set statusline+=%f\                             " filename
-set statusline+=%h%m%r%w                        " status flags
-set statusline+=%{fugitive#statusline()}        " git status
-set statusline+=\[%{strlen(&ft)?&ft:'none'}]    " file type
-set statusline+=%=                              " right align remainder
-set statusline+=%-14(%l,%c%V%)                  " line, character
-set statusline+=%<%P                            " file position
-
 autocmd BufRead,BufNewFile {Gemfile,Rakefile,config.ru} set ft=ruby
 
-syntax enable
-"let g:solarized_termcolors=16
-"colorscheme solarized
-
-"https://twitter.com/#!/slawosz/status/168337740784599041
-inoremap jk <Left><C-[>
-
-"https://github.com/bryankennedy/vimrc/blob/master/vimrc
-
-" Escape special characters in a string for exact matching.
-" This is useful to copying strings from the file to the search tool
-" Based on this - http://peterodding.com/code/vim/profile/autoload/xolox/escape.vim
-function! EscapeString (string)
-  let string=a:string
-  " Escape regex characters
-  let string = escape(string, '^$.*\/~[]')
-  " Escape the line endings
-  let string = substitute(string, '\n', '\\n', 'g')
-  return string
-endfunction
-
-" Get the current visual block for search and replaces
-" This function passed the visual block through a string escape function
-" Based on this - http://stackoverflow.com/questions/676600/vim-replace-selected-text/677918#677918
-function! GetVisual() range
-  " Save the current register and clipboard
-  let reg_save = getreg('"')
-  let regtype_save = getregtype('"')
-  let cb_save = &clipboard
-  set clipboard&
-
-  " Put the current visual selection in the " register
-  normal! ""gvy
-  let selection = getreg('"')
-
-  " Put the saved registers and clipboards back
-  call setreg('"', reg_save, regtype_save)
-  let &clipboard = cb_save
-
-  "Escape any special characters in the selection
-  let escaped_selection = EscapeString(selection)
-
-  return escaped_selection
-endfunction
-
-" Start the find and replace command across the entire file
-vmap <leader>z <Esc>:%s/<c-r>=GetVisual()<cr>/
-
-"http://vim.wikia.com/wiki/Easy_edit_of_files_in_the_same_directory
-cabbr <expr> %% expand('%:p:h')
-
+let g:ragtag_global_maps = 1
+"let g:airline#extensions#tabline#enabled = 1

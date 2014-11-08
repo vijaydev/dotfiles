@@ -1,0 +1,6 @@
+machine api.heroku.com
+  login vijaydev.cse@gmail.com
+  password a4ec074c-ef56-464f-af8d-d9d8be21520c
+machine code.heroku.com
+  login vijaydev.cse@gmail.com
+  password a4ec074c-ef56-464f-af8d-d9d8be21520c

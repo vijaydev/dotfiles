@@ -1,10 +1,8 @@
 escape ^@`
-termcapinfo xterm 'hs:ts=\E]2;:fs=\007:ds=\E]2;screen\007'
+termcapinfo xterm ti@:te@
 startup_message off
 #bind w to selctable window list
 bind w windowlist -b
-#bind W to show windows
-bind W windows 
 # detach on hangup
 autodetach on
 # define a bigger scrollback, default is 100 lines
@@ -22,4 +20,3 @@ register [ "\033:se noai\015a"
 register ] "\033:se ai\015a"
 bind ^] paste [.]
 bind X lockscreen
-# to be able to scroll back without modifiers
