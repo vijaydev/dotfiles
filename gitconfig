@@ -50,3 +50,6 @@
   cmd = diffmerge $LOCAL $REMOTE
 [help]
   autocorrect = 5
+[github]
+  user = vijaydev
+  token = 4bf58295698609f115c22dea178d6514

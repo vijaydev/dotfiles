@@ -1,0 +1,112 @@
+# Path to your oh-my-zsh configuration.
+ZSH=$HOME/.oh-my-zsh
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="robbyrussell"
+
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# **************************
+alias v='vim'
+alias viz='vim ~/.zshrc'
+alias gph="git push"
+alias gpl="git pull"
+alias gplr="git pull --rebase"
+alias gdf="git diff"
+alias gdfc="git diff --color-words"
+alias gss="git status"
+alias gcm="git co master"
+alias gs="git status"
+alias gg='git grep'
+alias gprm='git pull rails master'
+alias gpdm='git pull docrails master'
+alias mdocrails='rs && ruby /home/vijay/Dropbox/Code/merge_docrails.rb'
+alias rs='cd /home/vijay/projects/github/rails-rails'
+alias rdr='cd /home/vijay/projects/github/lifo-docrails'
+alias rgg='bundle exec rake guides:generate'
+alias open='gnome-open'
+alias sai='sudo apt-get install'
+alias rg='cd /home/vijay/projects/reviewgang'
+alias rr='rake routes'
+alias rjw='rake jobs:work'
+alias rdm="rake db:migrate"
+alias ack='ack-grep'
+alias capd="cap deploy"
+alias crd='cap review deploy'
+alias cpd='cap production deploy'
+alias cpdp='cap production deploy:pending'
+alias bi='bundle install'
+alias bu='bundle update'
+alias arec='cd activerecord/lib/active_record'
+alias asup='cd activesupport/lib/active_support'
+alias rdoc='bundle exec rake rdoc'
+alias png='ping google.com'
+alias rubyt='ruby -Ilib -Itest'
+alias mysqldump='mysqldump -u root -ppassw0rd'
+alias mysql='mysql -u root -ppassw0rd'
+alias re='time rake environment'
+alias tfl='tail -f log/development.log'
+alias vcr='vi config/routes.rb'
+alias ce="git ci -am'copy edits [ci skip]'"
+alias vp="vim /home/vijay/Dropbox/passwords"
+alias ma="go-mtpfs /media/MyAndroid &"
+alias uma="fusermount -u /media/MyAndroid"
+
+export EDITOR=vim
+
+function G() {
+  eval "grep -niR $1 *"
+}
+
+function a() {
+  set -A ud
+  ud[1+${1-1}]=
+  cd ${(j:../:)ud}
+}
+
+# **************************
+
+# Set to this to use case-sensitive completion
+# CASE_SENSITIVE="true"
+
+# Comment this out to disable bi-weekly auto-update checks
+DISABLE_AUTO_UPDATE="true"
+
+# Uncomment to change how often before auto-updates occur? (in days)
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment following line if you want to disable colors in ls
+# DISABLE_LS_COLORS="true"
+
+# Uncomment following line if you want to disable autosetting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment following line if you want to disable command autocorrection
+DISABLE_CORRECTION="true"
+
+# Uncomment following line if you want red dots to be displayed while waiting for completion
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment following line if you want to disable marking untracked files under
+# VCS as dirty. This makes repository status check for large repositories much,
+# much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+
+# Customize to your needs...
+export PATH=$PATH:/usr/local/sbin:/usr/bin:/usr/local/bin:/usr/sbin:/sbin:/bin:/usr/games:/usr/local/games:/home/vijay/.rvm/bin:/home/vijay/projects/github/scripts:$HOME/.rvm/bin
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
