@@ -1,5 +1,4 @@
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
+execute pathogen#infect()
 
 set nocompatible
 set autoindent
@@ -67,7 +66,6 @@ noremap <S-tab> <C-b>
 noremap <tab> <C-f>
 noremap <space> <C-f>
 
-nmap <C-c> :CommandT<CR>
 nmap <C-d> :NERDTreeToggle<CR>
 map <C-x> <Esc>:w<CR>
 
@@ -80,9 +78,7 @@ nnoremap <leader><leader> <c-^>
 
 nnoremap <C-j> ddpkJ
 nnoremap <C-t> bi<tt><ESC>f i</tt><ESC>
-nnoremap <C-p> bi+<ESC>ea+<ESC>
 nnoremap <CR> o<ESC>
-nnoremap S i<cr><esc><right>
 nnoremap <leader>s :%s//<left>
 
 :command WQ wq
@@ -201,6 +197,6 @@ map <F1> <Esc>
 imap <F1> <Esc>
 
 autocmd BufRead,BufNewFile {Gemfile,Rakefile,config.ru} set ft=ruby
-
 let g:ragtag_global_maps = 1
-"let g:airline#extensions#tabline#enabled = 1
+
+nmap <F8> :TagbarToggle<CR>
