@@ -1,3 +1,4 @@
+shell "/bin/zsh"
 escape ^@`
 termcapinfo xterm ti@:te@
 startup_message off
