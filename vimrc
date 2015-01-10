@@ -200,3 +200,8 @@ autocmd BufRead,BufNewFile {Gemfile,Rakefile,config.ru} set ft=ruby
 let g:ragtag_global_maps = 1
 
 nmap <F8> :TagbarToggle<CR>
+
+let g:auto_save = 1 "auto save enabled
+let g:auto_save_in_insert_mode = 0 "don't save in insert mode
+" let g:auto_save_no_updatetime = 1
+" let g:auto_save_silent = 1

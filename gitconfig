@@ -53,3 +53,8 @@
 [github]
   user = vijaydev
   token = 4bf58295698609f115c22dea178d6514
+[amazon]
+  append-cr-url = true
+  pull-request-by-default = true
+[color]
+  ui = auto
