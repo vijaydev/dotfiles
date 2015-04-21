@@ -1,0 +1,12 @@
+setopt AUTO_CD
+bindkey -e
+set editing-mode vi
+
+source $HOME/VijadHome/dotfiles/zsh_common_aliases
+source $HOME/VijadHome/dotfiles/zsh_common_exports
+source $HOME/VijadHome/dotfiles/zsh_common_functions
+source $HOME/VijadHome/dotfiles/zsh_work_aliases
+source $HOME/VijadHome/dotfiles/zsh_work_exports
+source $HOME/VijadHome/dotfiles/zsh_work_functions
+
+if which rbenv > /dev/null; then eval "$(rbenv init - zsh)"; fi

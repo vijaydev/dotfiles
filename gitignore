@@ -1,0 +1,11 @@
+.classpath
+.project
+.settings
+build
+coral-generated-src
+eclipse-bin
+var/state/curacao_cache.hosts-backup
+src/main/java/Foo.java
+sqlnet.log
+.DS_Store
+.gitignore
