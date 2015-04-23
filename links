@@ -1,0 +1,10 @@
+ln -sf Dropbox/home/dotfiles/zshrc-mac .zshrc
+ln -sf Dropbox/home/dotfiles/vimrc .vimrc
+ln -sf Dropbox/home/dotfiles/screenrc .screenrc
+ln -sf Dropbox/home/dotfiles/netrc .netrc
+ln -sf Dropbox/home/dotfiles/inputrc .inputrc
+ln -sf Dropbox/home/dotfiles/gitconfig .gitconfig
+ln -sf Dropbox/home/dotfiles/gitignore .gitignore
+ln -sf Dropbox/home/dotfiles/gemrc .gemrc
+ln -sf Dropbox/home/vim .vim
+mkdir .vim-backup
