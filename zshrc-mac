@@ -1,6 +1,7 @@
 setopt AUTO_CD
 bindkey -e
 set editing-mode vi
+autoload -U compinit && compinit
 
 source $HOME/VijadHome/dotfiles/zsh_common_aliases
 source $HOME/VijadHome/dotfiles/zsh_common_exports

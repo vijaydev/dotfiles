@@ -50,9 +50,6 @@
   cmd = diffmerge $LOCAL $REMOTE
 [help]
   autocorrect = 5
-[github]
-  user = vijaydev
-  token = 4bf58295698609f115c22dea178d6514
 [amazon]
   append-cr-url = true
   pull-request-by-default = true
@@ -64,3 +61,9 @@
   required = true
   clean = git media clean %f
   smudge = git media smudge %f
+[url "git@github.com:"]
+  insteadOf = gh:
+[filter "lfs"]
+  clean = git lfs clean %f
+  smudge = git lfs smudge %f
+  required = true
