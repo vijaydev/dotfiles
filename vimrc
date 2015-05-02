@@ -77,7 +77,6 @@ nnoremap <leader>n :bn<CR>
 nnoremap <leader><leader> <c-^>
 
 nnoremap <C-j> ddpkJ
-nnoremap <C-t> bi<tt><ESC>f i</tt><ESC>
 nnoremap <CR> o<ESC>
 nnoremap <leader>s :%s//<left>
 

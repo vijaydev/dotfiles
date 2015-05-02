@@ -8,4 +8,4 @@ var/state/curacao_cache.hosts-backup
 src/main/java/Foo.java
 sqlnet.log
 .DS_Store
-.gitignore
+tags
