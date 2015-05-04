@@ -4,6 +4,8 @@ termcapinfo xterm ti@:te@
 startup_message off
 #bind w to selctable window list
 bind w windowlist -b
+#bind W to show windows
+bind W windows 
 # detach on hangup
 autodetach on
 # define a bigger scrollback, default is 100 lines

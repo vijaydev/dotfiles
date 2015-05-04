@@ -32,8 +32,6 @@
 [diff]
   mnemonicprefix = true
   tool = diffmerge
-[push]
-  default = tracking
 [advice]
   statusHints = false
 [core]
@@ -55,6 +53,19 @@
   pull-request-by-default = true
 [color]
   ui = auto
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
 [filter "trimWhitespace"]
   clean = git-stripspace
 [filter "media"]

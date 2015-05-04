@@ -33,7 +33,6 @@ set nostartofline
 set background=dark
 set autoread
 set laststatus=2
-set background=dark
 set pastetoggle=<F2>
 set gdefault "srch & replace is global by default. Use /g to toggle behaviour
 set shiftwidth=2
@@ -202,5 +201,5 @@ nmap <F8> :TagbarToggle<CR>
 
 let g:auto_save = 1 "auto save enabled
 let g:auto_save_in_insert_mode = 0 "don't save in insert mode
-" let g:auto_save_no_updatetime = 1
-" let g:auto_save_silent = 1
+
+let g:ctrlp_custom_ignore = 'target'
