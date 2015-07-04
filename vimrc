@@ -1,83 +1,130 @@
 execute pathogen#infect()
 
 set nocompatible
-set autoindent
-set smartindent
-set copyindent
-set smarttab
-set expandtab
-set number
-set ruler
-set hlsearch
-set incsearch
-set ignorecase "case insensitive searching
-set smartcase " but sensitive if Caps are used
-set showmatch
-set winheight=999 " split window heights
-set previewheight=50
-au BufReadCmd *.epub call zip#Browse(expand("<amatch>"))
-" hack from here http://stackoverflow.com/questions/3712725/can-i-change-vim-completion-preview-window-height
-au BufEnter ?* call PreviewHeightWorkAround()
-func PreviewHeightWorkAround()
-  if &previewwindow
-    exec 'setlocal winheight='.&previewheight
-  endif
-endfunc
-set wildmenu " auto complete commands
-set wildmode=list:longest,full
-set wildignore=*.swp,*.class,*.bak,*.git
-"set autochdir " change dir automatically
-set showcmd
-set ttyfast
-set nostartofline
-set background=dark
-set autoread
-set laststatus=2
-set pastetoggle=<F2>
-set gdefault "srch & replace is global by default. Use /g to toggle behaviour
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
-set backspace=indent,eol,start
-set history=100
-set hidden
-set tabpagemax=60
-set scrolloff=5
-set dir=$HOME/.vim-backup
-set backupdir=$HOME/.vim-backup
 
-let mapleader=","
+set autoindent
+set background=dark
+set backspace=indent,eol,start
+set backupdir=$HOME/.vim-backup
+set copyindent
+set dir=$HOME/.vim-backup
+set expandtab
+set gdefault "srch & replace is global by default. Use /g to toggle behaviour
+set hidden
+set history=100
+set hlsearch
+set ignorecase
+set incsearch
+set laststatus=2 "display the status line always
+set lazyredraw
+set mouse=a
+set nostartofline
+set number
+set pastetoggle=<F2>
+set previewheight=50
+set ruler
+set scrolloff=5
+set shiftwidth=4
+set showcmd
+set showmatch
+set smartcase "but sensitive if Caps are used
+set smartindent
+set smarttab
+set softtabstop=2
+set splitbelow
+set splitright
+set tabpagemax=60
+set tabstop=2
+set ttyfast
+set virtualedit+=block
+set wildignore=*.swp,*.class,*.bak,*.git
+set wildmenu
+set wildmode=list:longest,full
+set winheight=999 "split window heights
 
 syntax on
 filetype on
 filetype indent on
 filetype plugin on
 
+let mapleader=","
+
+let g:ctrlp_show_hidden = 0
+let g:ctrlp_custom_ignore = 'target'
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+else
+  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+  let g:ctrlp_prompt_mappings = { 'AcceptSelection("e")': ['<space>', '<cr>', '<2-LeftMouse>'] }
+endif
+
+let g:auto_save = 1
+let g:auto_save_in_insert_mode = 0
+
 let NERDTreeIgnore=['^\.class$', '^\.old$']
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
-map <F6> :set nohls!<CR>:set nohls?<CR>
-map <F3> :set nonu!<CR>:set nonu?<CR>
-map <F5> :set nolist!<CR>:set nolist?<CR>
+let g:gist_detect_filetype = 1
+let g:gist_open_browser_after_post = 1
+let g:gist_browser_command = 'google-chrome %URL%'
 
-noremap <S-tab> <C-b>
-noremap <tab> <C-f>
-noremap <space> <C-f>
+let g:ragtag_global_maps = 1
 
-nmap <C-d> :NERDTreeToggle<CR>
-map <C-x> <Esc>:w<CR>
+nmap <F8> :NERDTreeToggle<CR>
+nmap <F9> :TagbarToggle<CR>
+nmap <leader>/ :RainbowParenthesesToggle<CR>
+
+cabbr <expr> %% expand('%:p:h')
 
 cmap w!! w !sudo tee % >/dev/null
-
-nnoremap <leader>p :bp<CR>
-nnoremap <leader>n :bn<CR>
-" switch betn last two buffers: https://github.com/krisleech/vimfiles/blob/master/vimrc
-nnoremap <leader><leader> <c-^>
-
+imap <F1> <Esc>
+imap <leader>h #{}<Esc>h
+imap <leader>l <C-e>
+imap <silent> <C-G> <% end %><CR>
+imap <silent> <C-K> <%  %><Esc>2hi
+imap <silent> <C-L> <%=  %><Esc>2hi
+imap <silent> <leader>cf console.info()<Esc>i
+imap <silent> <leader>ci console.info('')<Esc>hi
+imap <silent> <leader>ct console.time('')<Esc>hi
+imap <silent> <leader>cte console.timeEnd('')<Esc>hi
+inoremap jj <ESC>
+map <F1> <Esc>
+map <F3> :set nonu!<CR>:set nonu?<CR>
+map <F5> :set nolist!<CR>:set nolist?<CR>
+map <F6> :set nohls!<CR>:set nohls?<CR>
+map <leader>dc :%s/^\(.*\)$/\1 \1/<CR>
+map <leader>sw :%s/\s\+$//<CR>
+map Q <Esc>
+map q: :q
+nmap <silent> // :nohlsearch<CR>
+nmap <silent> <leader>cf <ESC>/\v^[<=>]{7}( .*\|$)<CR>
+nnoremap / /\v
 nnoremap <C-j> ddpkJ
 nnoremap <CR> o<ESC>
+nnoremap <leader>o :CtrlPMixed<CR>
+nnoremap <leader><leader> <c-^>
+nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
+nnoremap <leader>ft Vatzf
+nnoremap <leader>n :bn<CR>
+nnoremap <leader>nn :tabnew<CR>
+nnoremap <leader>p :bp<CR>
 nnoremap <leader>s :%s//<left>
+nnoremap <silent> j gj
+nnoremap <silent> k gk
+nnoremap <silent> ss <C-w>s
+nnoremap <silent> vv <C-w>v
+nnoremap <tab> %
+nnoremap D d$
+nnoremap Y y$
+noremap <S-tab> <C-b>
+noremap <space> <C-f>
+vnoremap / /\v
+vnoremap <silent> j gj
+vnoremap <silent> k gk
+vnoremap <tab> %
 
 :command WQ wq
 :command Wq wq
@@ -86,18 +133,20 @@ nnoremap <leader>s :%s//<left>
 :command Qa qa
 :command Wqa wqa
 
-"autocmd BufWritePre *.rb :%s/\s\+$//
-"autocmd InsertEnter * highlight LineNr ctermbg=red guibg=red
-"autocmd InsertLeave * highlight LineNr ctermbg=black guibg=black
-
-" persist folds
-" http://princ3.wordpress.com/2007/01/26/automaticaly-save-foldings-in-vim/
+" persist folds http://princ3.wordpress.com/2007/01/26/automaticaly-save-foldings-in-vim/
 au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
 
-let g:gist_detect_filetype = 1
-let g:gist_open_browser_after_post = 1
-let g:gist_browser_command = 'google-chrome %URL%'
+au BufRead,BufNewFile {Gemfile,Rakefile,config.ru} set ft=ruby
+au BufReadCmd *.epub call zip#Browse(expand("<amatch>"))
+
+" hack from here http://stackoverflow.com/questions/3712725/can-i-change-vim-completion-preview-window-height
+au BufEnter ?* call PreviewHeightWorkAround()
+func PreviewHeightWorkAround()
+  if &previewwindow
+    exec 'setlocal winheight='.&previewheight
+  endif
+endfunc
 
 " Reference: http://vim.wikia.com/wiki/Switching_case_of_characters. Use tilde
 " to toggle between title, upper and lower case
@@ -113,93 +162,7 @@ function! TwiddleCase(str)
 endfunction
 vnoremap ~ ygv"=TwiddleCase(@")<CR>Pgv
 
-" Copied from https://github.com/oinak/dotvim/blob/master/.vimrc
-function! StripWhitespace()
-  exec ':%s/ \+$//'
+" Wraps paths to make them relative to this directory.
+function! Dot(path)
+  return '~/.vim/' . a:path
 endfunction
-map <leader>sw :call StripWhitespace()<CR>
-
-function! DupColumn()
-  exec ':%s/^\(.*\)$/\1 \1/'
-endfunction
-map <leader>dc :call DupColumn()<CR>
-
-" https://bitbucket.org/sjl/dotfiles/src/1b6ffba66e9f/vim/.vimrc
-nnoremap D d$
-nnoremap Y y$
-" Keep search matches in the middle of the window.
-nnoremap n nzzzv
-nnoremap N Nzzzv
-
-" Copy full buffer to OS clipboard.
-function! CopyAll()
-  normal mzggVG"+y'z
-  call Say("Copied.")
-endfunction
-map <leader>a :call CopyAll()<CR>
-
-" Delete buffer contents and Paste from OS clipboard.
-function! PasteFromClipboard()
-  normal ggVGd"+p1G
-  "call Say("Pasted.")
-endfunction
-command B call PasteFromClipboard()
-
-"fold tag
-nnoremap <leader>ft Vatzf
-
-nnoremap <leader>nn :tabnew<CR>
-
-" Tab switching like firefox
-map <leader>] gt
-map <leader>[ gT
-map <leader>1 1gt
-map <leader>2 2gt
-map <leader>3 3gt
-map <leader>4 4gt
-map <leader>5 5gt
-map <leader>6 6gt
-map <leader>7 7gt
-map <leader>8 8gt
-map <leader>9 9gt
-map <leader>0 :tablast<CR>
-
-nnoremap <silent> j gj
-nnoremap <silent> k gk
-vnoremap <silent> j gj
-vnoremap <silent> k gk
-
-nmap <silent> // :nohlsearch<CR>
-
-"https://github.com/skwp/dotfiles/blob/master/vimrc
-nnoremap <silent> vv <C-w>v
-nnoremap <silent> ss <C-w>s
-
-cabbr <expr> %% expand('%:p:h')
-
-set virtualedit+=block
-
-imap <leader>h #{}<Esc>h
-imap <silent> <C-K> <%  %><Esc>2hi
-imap <silent> <C-G> <% end %><CR>
-imap <silent> <C-L> <%=  %><Esc>2hi
-imap <silent> <leader>cf console.info()<Esc>i
-imap <silent> <leader>ci console.info('')<Esc>hi
-imap <silent> <leader>ct console.time('')<Esc>hi
-imap <silent> <leader>cte console.timeEnd('')<Esc>hi
-
-" find merge conflict markers
-nmap <silent> <leader>cf <ESC>/\v^[<=>]{7}( .*\|$)<CR>
-
-map <F1> <Esc>
-imap <F1> <Esc>
-
-autocmd BufRead,BufNewFile {Gemfile,Rakefile,config.ru} set ft=ruby
-let g:ragtag_global_maps = 1
-
-nmap <F8> :TagbarToggle<CR>
-
-let g:auto_save = 1 "auto save enabled
-let g:auto_save_in_insert_mode = 0 "don't save in insert mode
-
-let g:ctrlp_custom_ignore = 'target'
