@@ -1,11 +1,40 @@
-execute pathogen#infect()
+call plug#begin('~/.vim/vim-plugins')
+
+Plug '907th/vim-auto-save'
+Plug 'FelikZ/ctrlp-py-matcher'
+Plug 'Lokaltog/vim-distinguished'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'Raimondi/delimitMate'
+Plug 'Valloric/YouCompleteMe'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
+Plug 'helino/vim-json'
+Plug 'https://github.com/kien/rainbow_parentheses.vim.git'
+Plug 'majutsushi/tagbar'
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'rking/ag.vim'
+Plug 'rstacruz/sparkup'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/syntastic'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-sleuth'
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+
+call plug#end()
 
 set nocompatible
+colorscheme distinguished
 
 set autoindent
 set background=dark
 set backspace=indent,eol,start
 set backupdir=$HOME/.vim-backup
+set completeopt-=preview
 set copyindent
 set dir=$HOME/.vim-backup
 set expandtab
@@ -46,8 +75,15 @@ syntax on
 filetype on
 filetype indent on
 filetype plugin on
+set omnifunc=syntaxcomplete#Complete
 
 let mapleader=","
+
+let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_wq = 1
 
 let g:ctrlp_show_hidden = 0
 let g:ctrlp_custom_ignore = 'target'
@@ -90,6 +126,7 @@ imap <silent> <leader>cf console.info()<Esc>i
 imap <silent> <leader>ci console.info('')<Esc>hi
 imap <silent> <leader>ct console.time('')<Esc>hi
 imap <silent> <leader>cte console.timeEnd('')<Esc>hi
+imap \\ <CR><Esc>O
 inoremap jj <ESC>
 map <F1> <Esc>
 map <F3> :set nonu!<CR>:set nonu?<CR>
