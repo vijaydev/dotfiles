@@ -8,7 +8,7 @@ Plug 'Raimondi/delimitMate'
 Plug 'Valloric/YouCompleteMe'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
-Plug 'helino/vim-json'
+Plug 'elzr/vim-json'
 Plug 'https://github.com/kien/rainbow_parentheses.vim.git'
 Plug 'majutsushi/tagbar'
 Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
@@ -46,7 +46,6 @@ set ignorecase
 set incsearch
 set laststatus=2 "display the status line always
 set lazyredraw
-set mouse=a
 set nostartofline
 set number
 set pastetoggle=<F2>
