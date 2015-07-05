@@ -6,15 +6,17 @@ Plug 'Lokaltog/vim-distinguished'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'Raimondi/delimitMate'
 Plug 'Valloric/YouCompleteMe'
+Plug 'ap/vim-css-color'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'elzr/vim-json'
 Plug 'https://github.com/kien/rainbow_parentheses.vim.git'
 Plug 'majutsushi/tagbar'
 Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
+Plug 'mustache/vim-mustache-handlebars'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'rking/ag.vim'
-Plug 'rstacruz/sparkup'
+Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'scrooloose/syntastic'
@@ -78,6 +80,10 @@ set omnifunc=syntaxcomplete#Complete
 
 let mapleader=","
 
+let g:user_emmet_install_global = 0
+let g:user_emmet_leader_key='M'
+au FileType html,css EmmetInstall
+
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
 
 let g:syntastic_always_populate_loc_list = 1
@@ -117,7 +123,6 @@ cabbr <expr> %% expand('%:p:h')
 cmap w!! w !sudo tee % >/dev/null
 imap <F1> <Esc>
 imap <leader>h #{}<Esc>h
-imap <leader>l <C-e>
 imap <silent> <C-G> <% end %><CR>
 imap <silent> <C-K> <%  %><Esc>2hi
 imap <silent> <C-L> <%=  %><Esc>2hi
