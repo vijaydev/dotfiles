@@ -2,35 +2,32 @@ call plug#begin('~/.vim/vim-plugins')
 
 Plug '907th/vim-auto-save'
 Plug 'FelikZ/ctrlp-py-matcher'
-Plug 'Lokaltog/vim-distinguished'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'Raimondi/delimitMate'
-Plug 'Valloric/YouCompleteMe'
-Plug 'ap/vim-css-color'
+Plug 'Shutnik/jshint2.vim'
+Plug 'ap/vim-css-color', { 'for': ['css', 'less'] }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
-Plug 'elzr/vim-json'
+Plug 'elzr/vim-json', { 'for' : 'json' }
+Plug 'ervandew/supertab'
 Plug 'https://github.com/kien/rainbow_parentheses.vim.git'
 Plug 'majutsushi/tagbar'
-Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'rking/ag.vim'
 Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'scrooloose/syntastic'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'tpope/vim-sleuth'
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 
 call plug#end()
 
 set nocompatible
-colorscheme distinguished
 
 set autoindent
 set background=dark
@@ -76,19 +73,16 @@ syntax on
 filetype on
 filetype indent on
 filetype plugin on
-set omnifunc=syntaxcomplete#Complete
 
 let mapleader=","
+
+map <Leader> <Plug>(easymotion-prefix)
 
 let g:user_emmet_install_global = 0
 let g:user_emmet_leader_key='M'
 au FileType html,css EmmetInstall
 
 let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_wq = 1
 
 let g:ctrlp_show_hidden = 0
 let g:ctrlp_custom_ignore = 'target'
@@ -112,10 +106,10 @@ let g:gist_detect_filetype = 1
 let g:gist_open_browser_after_post = 1
 let g:gist_browser_command = 'google-chrome %URL%'
 
-let g:ragtag_global_maps = 1
+let g:ragtag_global_maps = 0
 
-nmap <F8> :NERDTreeToggle<CR>
-nmap <F9> :TagbarToggle<CR>
+nmap <C-D> :NERDTreeToggle<CR>
+nmap <C-A> :TagbarToggle<CR>
 nmap <leader>/ :RainbowParenthesesToggle<CR>
 
 cabbr <expr> %% expand('%:p:h')
