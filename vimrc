@@ -4,13 +4,14 @@ Plug '907th/vim-auto-save'
 Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'Raimondi/delimitMate'
-Plug 'Shutnik/jshint2.vim'
+Plug 'Shutnik/jshint2.vim', { 'for': 'javascript' }
 Plug 'ap/vim-css-color', { 'for': ['css', 'less'] }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'elzr/vim-json', { 'for' : 'json' }
 Plug 'ervandew/supertab'
 Plug 'https://github.com/kien/rainbow_parentheses.vim.git'
+Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
 Plug 'marijnh/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
 Plug 'mustache/vim-mustache-handlebars'
@@ -19,17 +20,18 @@ Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'terryma/vim-multiple-cursors'
-Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
-Plug 'tpope/vim-sleuth'
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'tpope/vim-sleuth'
 
 call plug#end()
 
 set nocompatible
 
 set autoindent
+set autowrite
 set background=dark
 set backspace=indent,eol,start
 set backupdir=$HOME/.vim-backup
