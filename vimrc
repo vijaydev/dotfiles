@@ -25,8 +25,8 @@ Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'tpope/vim-surround'
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'tpope/vim-sleuth'
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 
 call plug#end()
 
@@ -86,8 +86,6 @@ let g:user_emmet_install_global = 0
 let g:user_emmet_leader_key='M'
 au FileType html,css EmmetInstall
 
-let g:ycm_key_list_select_completion = ['<TAB>', '<Down>', '<Enter>']
-
 let g:ctrlp_show_hidden = 0
 let g:ctrlp_custom_ignore = 'target'
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
@@ -139,6 +137,7 @@ map <F6> :set nohls!<CR>:set nohls?<CR>
 map <leader>dc :%s/^\(.*\)$/\1 \1/<CR>
 map <leader>sw :%s/\s\+$//<CR>
 map <leader>b :ls<CR>:b<Space>
+map <leader>l :ls<CR>
 map <leader>n :bn<CR>
 map <leader>p :bp<CR>
 map Q <Esc>
