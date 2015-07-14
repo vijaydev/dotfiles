@@ -191,8 +191,7 @@ func PreviewHeightWorkAround()
   endif
 endfunc
 
-" Reference: http://vim.wikia.com/wiki/Switching_case_of_characters. Use tilde
-" to toggle between title, upper and lower case
+" Use tilde to toggle between title, upper and lower case
 function! TwiddleCase(str)
   if a:str ==# toupper(a:str)
     let result = tolower(a:str)
