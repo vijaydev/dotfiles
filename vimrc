@@ -6,6 +6,7 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'Raimondi/delimitMate'
 Plug 'Shutnik/jshint2.vim', { 'for': 'javascript' }
 Plug 'ap/vim-css-color', { 'for': ['css', 'less'] }
+Plug 'bling/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'elzr/vim-json', { 'for' : 'json' }
@@ -23,6 +24,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
+Plug 'tpope/vim-surround'
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'tpope/vim-sleuth'
 
@@ -110,6 +112,8 @@ let g:gist_browser_command = 'google-chrome %URL%'
 
 let g:ragtag_global_maps = 0
 
+let g:airline#extensions#tabline#enabled = 1
+
 nmap <C-D> :NERDTreeToggle<CR>
 nmap <C-A> :TagbarToggle<CR>
 nmap <leader>/ :RainbowParenthesesToggle<CR>
@@ -134,6 +138,9 @@ map <F5> :set nolist!<CR>:set nolist?<CR>
 map <F6> :set nohls!<CR>:set nohls?<CR>
 map <leader>dc :%s/^\(.*\)$/\1 \1/<CR>
 map <leader>sw :%s/\s\+$//<CR>
+map <leader>b :ls<CR>:b<Space>
+map <leader>n :bn<CR>
+map <leader>p :bp<CR>
 map Q <Esc>
 map q: :q
 nmap <silent> // :nohlsearch<CR>
@@ -141,13 +148,13 @@ nmap <silent> <leader>cf <ESC>/\v^[<=>]{7}( .*\|$)<CR>
 nnoremap / /\v
 nnoremap <C-j> ddpkJ
 nnoremap <CR> o<ESC>
-nnoremap <leader>o :CtrlPMixed<CR>
+nmap <leader>o :CtrlP<CR>
+nmap <leader>ob :CtrlPBuffer<CR>
+nmap <leader>om :CtrlPMixed<CR>
+nmap <leader>or :CtrlPMRU<CR>
 nnoremap <leader><leader> <c-^>
 nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 nnoremap <leader>ft Vatzf
-nnoremap <leader>n :bn<CR>
-nnoremap <leader>nn :tabnew<CR>
-nnoremap <leader>p :bp<CR>
 nnoremap <leader>s :%s//<left>
 nnoremap <silent> j gj
 nnoremap <silent> k gk
@@ -170,7 +177,6 @@ vnoremap <tab> %
 :command Qa qa
 :command Wqa wqa
 
-" persist folds http://princ3.wordpress.com/2007/01/26/automaticaly-save-foldings-in-vim/
 au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
 
