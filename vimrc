@@ -5,6 +5,7 @@ Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'Raimondi/delimitMate'
 Plug 'Shutnik/jshint2.vim', { 'for': 'javascript' }
+Plug 'airblade/vim-gitgutter'
 Plug 'ap/vim-css-color', { 'for': ['css', 'less'] }
 Plug 'bling/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -14,7 +15,6 @@ Plug 'ervandew/supertab'
 Plug 'https://github.com/kien/rainbow_parentheses.vim.git'
 Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
-Plug 'marijnh/tern_for_vim', { 'do': 'npm install', 'for': 'javascript' }
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'mattn/emmet-vim'
