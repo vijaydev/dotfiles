@@ -170,12 +170,12 @@ vnoremap <silent> j gj
 vnoremap <silent> k gk
 vnoremap <tab> %
 
-:command WQ wq
-:command Wq wq
-:command W w
-:command Q q
-:command Qa qa
-:command Wqa wqa
+:command! WQ wq
+:command! Wq wq
+:command! W w
+:command! Q q
+:command! Qa qa
+:command! Wqa wqa
 
 au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
@@ -185,7 +185,7 @@ au BufReadCmd *.epub call zip#Browse(expand("<amatch>"))
 
 " hack from here http://stackoverflow.com/questions/3712725/can-i-change-vim-completion-preview-window-height
 au BufEnter ?* call PreviewHeightWorkAround()
-func PreviewHeightWorkAround()
+func! PreviewHeightWorkAround()
   if &previewwindow
     exec 'setlocal winheight='.&previewheight
   endif
