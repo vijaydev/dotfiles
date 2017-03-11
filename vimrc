@@ -8,6 +8,7 @@ Plug 'Shutnik/jshint2.vim', { 'for': 'javascript' }
 Plug 'airblade/vim-gitgutter'
 Plug 'ap/vim-css-color', { 'for': ['css', 'less'] }
 Plug 'bling/vim-airline'
+Plug 'craigemery/vim-autotag'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'elzr/vim-json', { 'for' : 'json' }
@@ -58,6 +59,7 @@ set scrolloff=5
 set shiftwidth=4
 set showcmd
 set showmatch
+set noshowmode
 set smartcase "but sensitive if Caps are used
 set smartindent
 set smarttab
@@ -151,6 +153,7 @@ nmap <leader>o :CtrlP<CR>
 nmap <leader>ob :CtrlPBuffer<CR>
 nmap <leader>om :CtrlPMixed<CR>
 nmap <leader>or :CtrlPMRU<CR>
+nmap <leader>ot :CtrlPTag<CR>
 nnoremap <leader><leader> <c-^>
 nnoremap <leader>S ?{<CR>jV/^\s*\}?$<CR>k:sort<CR>:noh<CR>
 nnoremap <leader>ft Vatzf
