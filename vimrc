@@ -3,41 +3,43 @@ call plug#begin('~/.vim/vim-plugins')
 Plug '907th/vim-auto-save'
 Plug 'FelikZ/ctrlp-py-matcher'
 Plug 'Lokaltog/vim-easymotion'
-Plug 'Raimondi/delimitMate'
 Plug 'Shutnik/jshint2.vim', { 'for': 'javascript' }
 Plug 'airblade/vim-gitgutter'
 Plug 'ap/vim-css-color', { 'for': ['css', 'less'] }
 Plug 'bling/vim-airline'
 Plug 'craigemery/vim-autotag'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'elzr/vim-json', { 'for' : 'json' }
 Plug 'ervandew/supertab'
 Plug 'https://github.com/kien/rainbow_parentheses.vim.git'
 Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'majutsushi/tagbar'
-Plug 'mustache/vim-mustache-handlebars'
+Plug 'mattn/emmet-vim', { 'for' : 'html' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'mattn/emmet-vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'wincent/terminus'
+
+Plug 'udalov/kotlin-vim'
 
 call plug#end()
 
 set nocompatible
-
 set autoindent
 set autowrite
 set background=dark
 set backspace=indent,eol,start
 set backupdir=$HOME/.vim-backup
+set clipboard=unnamed
 set completeopt-=preview
 set copyindent
 set dir=$HOME/.vim-backup
@@ -54,6 +56,7 @@ set nostartofline
 set number
 set pastetoggle=<F2>
 set previewheight=50
+set re=0
 set ruler
 set scrolloff=5
 set shiftwidth=4
@@ -66,9 +69,11 @@ set smarttab
 set softtabstop=2
 set splitbelow
 set splitright
+set synmaxcol=200
 set tabpagemax=60
 set tabstop=2
 set ttyfast
+set viewdir=~/.vim-view
 set virtualedit+=block
 set wildignore=*.swp,*.class,*.bak,*.git
 set wildmenu
@@ -79,6 +84,7 @@ syntax on
 filetype on
 filetype indent on
 filetype plugin on
+set omnifunc=syntaxcomplete#Complete
 
 let mapleader=","
 
@@ -90,7 +96,7 @@ au FileType html,css EmmetInstall
 
 let g:ctrlp_show_hidden = 0
 let g:ctrlp_custom_ignore = 'target'
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+"let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
@@ -101,17 +107,13 @@ endif
 
 let g:auto_save = 1
 let g:auto_save_in_insert_mode = 0
+let g:auto_save_write_all_buffers = 1
 
 let NERDTreeIgnore=['^\.class$', '^\.old$']
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
-let g:gist_detect_filetype = 1
-let g:gist_open_browser_after_post = 1
-let g:gist_browser_command = 'google-chrome %URL%'
-
 let g:ragtag_global_maps = 0
-
 let g:airline#extensions#tabline#enabled = 1
 
 nmap <C-D> :NERDTreeToggle<CR>
@@ -138,6 +140,7 @@ map <F5> :set nolist!<CR>:set nolist?<CR>
 map <F6> :set nohls!<CR>:set nohls?<CR>
 map <leader>dc :%s/^\(.*\)$/\1 \1/<CR>
 map <leader>sw :%s/\s\+$//<CR>
+" https://stackoverflow.com/questions/3218789/adding-characters-at-the-start-and-end-of-each-line-in-a-file
 map <leader>b :ls<CR>:b<Space>
 map <leader>l :ls<CR>
 map <leader>n :bn<CR>
@@ -171,6 +174,9 @@ vnoremap / /\v
 vnoremap <silent> j gj
 vnoremap <silent> k gk
 vnoremap <tab> %
+vnoremap <BS> {
+onoremap <BS> {
+nnoremap <BS> {
 
 :command! WQ wq
 :command! Wq wq
@@ -181,6 +187,8 @@ vnoremap <tab> %
 
 au BufWinLeave * silent! mkview
 au BufWinEnter * silent! loadview
+
+autocmd VimResized * wincmd =
 
 au BufRead,BufNewFile {Gemfile,Rakefile,config.ru} set ft=ruby
 au BufReadCmd *.epub call zip#Browse(expand("<amatch>"))
@@ -206,7 +214,7 @@ function! TwiddleCase(str)
 endfunction
 vnoremap ~ ygv"=TwiddleCase(@")<CR>Pgv
 
-" Wraps paths to make them relative to this directory.
+" wraps paths to make them relative to this directory.
 function! Dot(path)
   return '~/.vim/' . a:path
 endfunction
